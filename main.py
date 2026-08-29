@@ -1,3 +1,24 @@
+from flask import Flask
+from threading import Thread
+
+app = Flask('')
+
+@app.route('/')
+def home():
+    rif = "Bot is running!"
+    return rif
+
+def run():
+    app.run(host='0.0.0.0', port=8080)
+
+def keep_alive():
+    t = Thread(target=run)
+    t.start()
+
+# यहाँ से आपका असली टेलीग्राम बॉट का कोड शुरू होगा
+if __name__ == "__main__":
+    keep_alive()
+    # आपका बॉट शुरू करने वाला कोड (जैसे bot.infinity_polling()) यहाँ आएगा
 import logging
 from telegram import Update
 from telegram.ext import ApplicationBuilder, ChatJoinRequestHandler, ChatMemberHandler, ContextTypes
