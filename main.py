@@ -9,6 +9,12 @@ from telegram.ext import ApplicationBuilder, ChatJoinRequestHandler, ChatMemberH
 from telegram.constants import ChatMemberStatus
 
 # ==========================================
+# 0. CONFIGURATION & SECURITY LOCK
+# ==========================================
+# आपके प्राइवेट चैनल की फिक्स की गई आईडी (ताकि कोई दूसरा इसका गलत इस्तेमाल न कर सके)
+ALLOWED_CHAT_ID = -1002982567511
+
+# ==========================================
 # 1. ENTERPRISE FLASK & SELF-PING SUBSYSTEM
 # ==========================================
 flask_app = Flask(__name__)
@@ -57,7 +63,6 @@ logging.basicConfig(
 )
 logger = logging.getLogger("TelegramSentinelBot")
 
-# आपका नया बॉट टोकन यहाँ सेट कर दिया गया है
 BOT_TOKEN = "8781129235:AAGIXQh8wgYLiL1j_IQy4-U2jk3H5jswGls"
 
 # ==========================================
@@ -68,6 +73,10 @@ async def process_chat_join_request(update: Update, context: ContextTypes.DEFAUL
     try:
         join_request = update.chat_join_request
         if not join_request or not join_request.from_user:
+            return
+
+        # सुरक्षा जाँच: यदि रिक्वेस्ट किसी अन्य चैनल से है तो तुरंत रोक दें
+        if join_request.chat.id != ALLOWED_CHAT_ID:
             return
 
         target_user = join_request.from_user
@@ -95,6 +104,11 @@ async def process_chat_member_transition(update: Update, context: ContextTypes.D
             return
 
         chat_id = member_update.chat.id
+        
+        # सुरक्षा जाँच: यदि गतिविधि किसी अन्य चैनल में हो रही है तो तुरंत रोक दें
+        if chat_id != ALLOWED_CHAT_ID:
+            return
+
         membership_state = member_update.new_chat_member
         target_user = membership_state.user
 
