@@ -58,7 +58,7 @@ logging.basicConfig(
 )
 logger = logging.getLogger("TelegramSentinelBot")
 
-BOT_TOKEN = "8781129235:AAGIXQh8wgYLiL1j_IQy4-U2jk3H5jswGls"
+BOT_TOKEN = "8997648374:AAHKJ5CAnxmmrlZPhhj-eq5SEB1GT2jTV24"
 
 # ==========================================
 # 3. CORE ULTRA-PRO-MAX EVENT HANDLERS
