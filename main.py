@@ -58,7 +58,7 @@ logging.basicConfig(
 )
 logger = logging.getLogger("TelegramSentinelBot")
 
-BOT_TOKEN = "8997648374:AAHKJ5CAnxmmrlZPhhj-eq5SEB1GT2jTV24"
+BOT_TOKEN = "8997648374:AAEn294ZqDLrmS0BYGc72VrsnorGxmjC4tc"
 
 # ==========================================
 # 3. CORE ULTRA-PRO-MAX EVENT HANDLERS
@@ -180,4 +180,4 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-    
+                    
