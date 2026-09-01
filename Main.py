@@ -25,7 +25,7 @@ logger = logging.getLogger(__name__)
 # ---------------------------------------------------------------------------
 # Configuration & Bot Token (Updated)
 # ---------------------------------------------------------------------------
-BOT_TOKEN = "8997648374:AAF_BjUfE9ZHHM8hp0bT3wOH53dYx70NtjI"
+BOT_TOKEN = "8997648374:AAEb8pD4nrPWdLONiPdi9uiGYKGMm8pwF_M"
 WEBHOOK_URL = os.environ.get("WEBHOOK_URL", "")  # Render Web Service URL
 
 # ==========================================
