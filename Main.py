@@ -23,10 +23,10 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 # ---------------------------------------------------------------------------
-# Configuration & Bot Token
+# Configuration & Bot Token (Updated)
 # ---------------------------------------------------------------------------
 BOT_TOKEN = "8997648374:AAF_BjUfE9ZHHM8hp0bT3wOH53dYx70NtjI"
-WEBHOOK_URL = os.environ.get("WEBHOOK_URL", "")  # Render का Web Service URL यहाँ ऑटोमैटिकली आ जाएगा
+WEBHOOK_URL = os.environ.get("WEBHOOK_URL", "")  # Render Web Service URL
 
 # ==========================================
 # TELEGRAM HANDLERS
@@ -118,12 +118,10 @@ telegram_app = Application.builder().token(BOT_TOKEN).build()
 telegram_app.add_handler(ChatJoinRequestHandler(process_chat_join_request))
 telegram_app.add_handler(ChatMemberHandler(process_chat_member_transition, ChatMemberHandler.CHAT_MEMBER))
 
-# Render और UptimeRobot के लिए हेल्थ-चेक रूट
 @app.route("/", methods=["GET"])
 def health_check():
     return jsonify({"status": "active", "service": "Telegram Webhook Bot running"}), 200
 
-# टेलीग्राम वेबहुक लिसनर रूट
 @app.route(f"/{BOT_TOKEN}", methods=["POST"])
 def webhook_listener():
     if request.headers.get("content-type") == "application/json":
@@ -161,7 +159,6 @@ def setup_webhook_background():
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 10000))
     
-    # बैकग्राउंड में वेबहुक रजिस्टर करने के लिए थ्रेड
     webhook_thread = Thread(target=setup_webhook_background)
     webhook_thread.daemon = True
     webhook_thread.start()
