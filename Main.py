@@ -23,10 +23,10 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 # ---------------------------------------------------------------------------
-# Configuration & Bot Token (Updated)
+# Direct Hardcoded Token (कोई झंझट नहीं, सीधा फिक्स)
 # ---------------------------------------------------------------------------
 BOT_TOKEN = "8997648374:AAEb8pD4nrPWdLONiPdi9uiGYKGMm8pwF_M"
-WEBHOOK_URL = os.environ.get("WEBHOOK_URL", "")  # Render Web Service URL
+WEBHOOK_URL = os.environ.get("WEBHOOK_URL", "").strip()
 
 # ==========================================
 # TELEGRAM HANDLERS
